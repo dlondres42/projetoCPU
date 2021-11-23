@@ -1,20 +1,15 @@
 module RegDst (
     input wire [2:0] selector,
-    input wire [31:0] data0,
-    input wire [31:0] data1,
+    input wire [4:0] data0,
+    input wire [15:0] data1,
     input wire [31:0] data2,
 
-    output wire [31:0] data_out
+    output wire [4:0] data_out
 );
 
-    always @(*) begin
-        case(selector)
-            3'b000: data_out = data0;
-            3'b001: data_out = 32'b00000000000000000000000000011101;
-            3'b010: data_out = 32'b00000000000000000000000000011111;
-            3'b011: data_out = data1;
-            3'b100: data_out = data2;
-        endcase
-    end
-    
+    assign data_out = (selector == 3'b000) ? data0 :
+                    ((selector == 3'b001) ? 5'd29 :
+                    ((selector == 3'b010) ? 5'd31 :
+                    ((selector == 3'b011) ? data1  : data2)));
+
 endmodule

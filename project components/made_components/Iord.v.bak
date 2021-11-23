@@ -4,7 +4,7 @@ module Iord (
     input wire [31:0] data1,
     input wire [31:0] data2,
 
-    output wire [31:0] data_out
+    output wire [31:0] data_out,
 );
 
 

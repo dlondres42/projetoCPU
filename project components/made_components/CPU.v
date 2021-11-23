@@ -6,10 +6,10 @@ module CPU (
     
 ////////////////////////////////////////////CONTROL WIRES////////////////////////////////////////////
     // 1 bit control wires
-		wire PC_w;
+	wire PC_w;
 		
     // memory control
-		wire MemWrite;
+	wire MemWR;
     wire MemRead;
 
     // mux control
@@ -35,18 +35,18 @@ module CPU (
     wire [2:0] CtrlULA;
 
     // ALU flags – control
-		wire Of; // overflow
-		wire Ng; // negative
-		wire Zr; // zero
-		wire Eq; // equal
-		wire Gt; // greater than
-		wire Lt; // less than
+	wire Of; // overflow
+	wire Ng; // negative
+	wire Zr; // zero
+	wire Eq; // equal
+	wire Gt; // greater than
+	wire Lt; // less than
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
     
     // write's //
-		wire IRWrite;
-		wire RegWrite;
-		wire ABWrite;
+	wire IRWrite;
+	wire RegWrite;
+	wire ABWrite;
     wire ALUoutWrite;
     wire EPCWrite;
     
@@ -57,12 +57,11 @@ module CPU (
     wire [31:0] ALUSrcB_out;
     wire [31:0] MDRls_out;
     wire [31:0] ALU_out;
-    wire [31:0] PC_out;
     wire [31:0] EPC_out;
     wire [31:0] PCSource_out;
-    wire [31:0] RegDst_out;
-    wire [31:0] LO_out;
-    wire [31:0] HI_out;
+    wire [4:0] RegDst_out;
+    wire [15:0] LO_out;
+    wire [15:0] HI_out;
     wire [31:0] ShiftReg_out;
     wire [31:0] Iord_out;
     wire [31:0] MDR_out;
@@ -70,20 +69,19 @@ module CPU (
     wire [31:0] DivSrcB_out;
     wire [31:0] MuxSSrcB_out;
     wire [31:0] ShiftSrcA_out;
-    wire [31:0] Extend16_32_out,
-    wire [31:0] ShiftSrcA_out;
+    wire [31:0] Extend16_32_out;
     wire [31:0] MemtoReg_out;
     wire [31:0] ULA_out;
     wire [31:0] A_out;
-		wire [31:0] B_out;
-		wire [31:0] EPC_out;
-		wire [31:0] ALUout_out;
+	wire [31:0] B_out;
+	wire [31:0] ALUout_out;
+    wire [31:0] MuxMem_out;
     
     wire [31:0] ALU_result;
     
     wire [31:0] ExtendShiftLeft2;
     wire [31:0] ExtendShiftLeft16;
-    wire [31:0] LTExtend;
+    wire [31:0] LTExtend_out;
 
         // IR entries
     wire [5:0] opcode;
@@ -93,7 +91,7 @@ module CPU (
    
         // RegBase entries
     wire [31:0] RB_to_A;
-		wire [31:0] RB_to_B;
+	wire [31:0] RB_to_B;
  
     
 ////////////////////////////////////////////////////
@@ -120,15 +118,15 @@ module CPU (
         ABWrite,
         RB_to_A,
         A_out
-		);
+	);
 
-		Registrador B_(
+	Registrador B_(
         clk,
         reset,
         ABWrite,
         RB_to_B,
         B_out
-		);
+	);
 
     Banco_reg RegBase_(
         clk,
@@ -140,7 +138,7 @@ module CPU (
         MemtoReg_out,
         RB_to_A,
         RB_to_B
-		);
+	);
 
     Registrador PC_(
         clk,
@@ -150,12 +148,19 @@ module CPU (
         PC_out
     );
 
+    MuxMem MUX_MEM(
+        CtrlMuxMem,
+        B_out,
+        MDR_out,
+        MuxMem_out
+    );
+
     Memoria Memdata_(
         Iord_out,
         clk,
-        MemWrite,
-        ULA_out,
-        Memdata_out
+        MemWR,
+        MuxMem_out,  // checar com o monitor
+        Memdata_out  // checar com o monitor
     );
 
     Instr_Reg IR_(
@@ -173,16 +178,16 @@ module CPU (
         ALUSrcA_out,
         ALUSrcB_out,
         CtrlULA,
-        ULA_out,
+        ULA_out, // não confundir com ULAout
         Of,
         Ng,
         Zr,
         Eq,
         Gt,
         Lt
-		);
+	);
 
-    ShiftSrcB M_ShiftSrcB_(
+/*    ShiftSrcB M_ShiftSrcB_(
         CtrlShifSrcB,
         immediate[10:6],
         rt,
@@ -216,7 +221,7 @@ module CPU (
         rs,
         MDR_out,
         DivSrcA_out
-    );
+    ); */
 
     Iord M_IORD_(
         CtrlIord,
@@ -230,13 +235,13 @@ module CPU (
         CtrlMemtoReg,
         ALU_out,
         MDRls_out,
-        LO_out,
-        HI_out,
+        LO_out, // checar tamanho da entrada com monitor
+        HI_out, // checar tamanho da entrada com monitor
         ShiftReg_out,
         ExtendShiftLeft16,
         immediate,
         ALU_result,
-        LTExtend,
+        LTExtend_out,
         MemtoReg_out
     );
 
@@ -270,7 +275,7 @@ module CPU (
         CtrlALUSrcB,
         rt,
         immediate,
-        ExtendShiftLeft2
+        ExtendShiftLeft2,
         ALUSrcB_out
     );
 
@@ -287,7 +292,7 @@ module CPU (
         opcode,
         immediate[5:0], // funct
         PC_w,
-        MemWrite,
+        MemWR,
         MemRead,
         IRWrite,
         RegWrite,

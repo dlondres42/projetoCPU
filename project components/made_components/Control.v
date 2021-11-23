@@ -1,12 +1,3 @@
-// ainda ta faltando alguns sinais no controle
-
-// eu decidi excluir o sinal de reset auxiliar do tutorial
-// (reset_out), acho que desse jeito que tá aí pode rodar de boa.
-// Além disso, fiquei em dúvida no final do CLOSEWRITE, tinha um wait
-// com PC_w = 0, mas esse sinal já era zerado no ciclo anterior.
-// Botei assim do mesmo jeito pq tava no diagrama né kkkkkkkk
-// qqlr coisa vcs mudam aí.
-
 module Control (
     input wire      clk,
     input wire      reset,
@@ -22,7 +13,7 @@ module Control (
     input wire [5:0]    FUNCT,
     // controladores de 1 bit
     output reg      PC_w,
-    output reg      MemWrite,
+    output reg      MemWR,
     output reg      MemRead,
 	output reg      IRWrite,
 	output reg      RegWrite,
@@ -82,7 +73,6 @@ parameter ADD = 6'h20;
 parameter AND = 6'h24;
 parameter SUB = 6'h22;
 
-// pra primeira entrega faz só essas 2 instruções que sao mto parecidas
 
 initial begin
     STATE = FETCH1;
@@ -94,15 +84,12 @@ always @(posedge clk) begin
         STATE = FETCH1;
 
         PC_w = 1'b0;
-        MemWrite = 1'b0;
-        MemRead = 1'b0;
+        MemWR = 1'b0; 
         IRWrite = 1'b0;
         RegWrite = 1'b1; ///
         ABWrite = 1'b0;
         ALUoutWrite = 1'b0;
         EPCWrite = 1'b0;
-
-        // missing LO/HI WRITE and ShiftControl
 
         CtrlALUSrcA = 2'b00;
         CtrlALUSrcB = 2'b00;
@@ -121,19 +108,16 @@ always @(posedge clk) begin
     end
     else begin
         case (STATE)
-            FECTH1: begin
+            FETCH1: begin
                 STATE = FETCH2;
 
                 PC_w = 1'b0;
-                MemWrite = 1'b0;
-                MemRead = 1'b1; ///
+                MemWR = 1'b0;
                 IRWrite = 1'b0;
                 RegWrite = 1'b0; ///
                 ABWrite = 1'b0;
                 ALUoutWrite = 1'b0;
                 EPCWrite = 1'b0;
-
-                // missing LO/HI WRITE and ShiftControl
 
                 CtrlALUSrcA = 2'b00; ///
                 CtrlALUSrcB = 2'b01; ///
@@ -151,19 +135,16 @@ always @(posedge clk) begin
                 // COUNTER 
             end
             
-            FECTH2: begin
+            FETCH2: begin
                 STATE = FETCH3;
 
                 PC_w = 1'b1; ///
-                MemWrite = 1'b0;
-                MemRead = 1'b0;
+                MemWR = 1'b0;
                 IRWrite = 1'b0;
                 RegWrite = 1'b0;
                 ABWrite = 1'b0;
                 ALUoutWrite = 1'b0;
                 EPCWrite = 1'b0;
-
-                // missing LO/HI WRITE and ShiftControl
 
                 CtrlALUSrcA = 2'b00;
                 CtrlALUSrcB = 2'b00;
@@ -181,19 +162,16 @@ always @(posedge clk) begin
                 // COUNTER 
             end
             
-            FECTH3: begin
+            FETCH3: begin
                 STATE = DECODE;
 
                 PC_w = 1'b0; ///
-                MemWrite = 1'b0;
-                MemRead = 1'b0;
+                MemWR = 1'b0;
                 IRWrite = 1'b1; ///
                 RegWrite = 1'b0;
                 ABWrite = 1'b0;
                 ALUoutWrite = 1'b0;
                 EPCWrite = 1'b0;
-
-                // missing LO/HI WRITE and ShiftControl
 
                 CtrlALUSrcA = 2'b00;
                 CtrlALUSrcB = 2'b00;
@@ -215,15 +193,12 @@ always @(posedge clk) begin
                 STATE = EXECUTE;
 
                 PC_w = 1'b0;
-                MemWrite = 1'b0;
-                MemRead = 1'b0;
+                MemWR = 1'b0;
                 IRWrite = 1'b0; ///
                 RegWrite = 1'b0;
                 ABWrite = 1'b0;
                 ALUoutWrite = 1'b1; ///
                 EPCWrite = 1'b0;
-
-                // missing LO/HI WRITE and ShiftControl
 
                 CtrlALUSrcA = 2'b00; ///
                 CtrlALUSrcB = 2'b11; ///
@@ -238,7 +213,7 @@ always @(posedge clk) begin
                 CtrlMuxSSrcB = 1'b0;
                 CtrlULA = 3'b001; ///
 
-                // COUNTER 
+                // COUNTER
             end
 
             EXECUTE: begin
@@ -250,15 +225,12 @@ always @(posedge clk) begin
                                 STATE = ADD_SUB_AND;
 
                                 PC_w = 1'b0;
-                                MemWrite = 1'b0;
-                                MemRead = 1'b0;
+                                MemWR = 1'b0;
                                 IRWrite = 1'b0;
                                 RegWrite = 1'b0;
                                 ABWrite = 1'b0;
                                 ALUoutWrite = 1'b0;
                                 EPCWrite = 1'b0;
-
-                                // missing LO/HI WRITE and ShiftControl
 
                                 CtrlALUSrcA = 2'b10; ///
                                 CtrlALUSrcB = 2'b00; ///
@@ -280,15 +252,12 @@ always @(posedge clk) begin
                                 STATE = ADD_SUB_AND;
 
                                 PC_w = 1'b0;
-                                MemWrite = 1'b0;
-                                MemRead = 1'b0;
+                                MemWR = 1'b0;
                                 IRWrite = 1'b0;
                                 RegWrite = 1'b0;
                                 ABWrite = 1'b0;
                                 ALUoutWrite = 1'b0;
                                 EPCWrite = 1'b0;
-
-                                // missing LO/HI WRITE and ShiftControl
 
                                 CtrlALUSrcA = 2'b10; ///
                                 CtrlALUSrcB = 2'b00; ///
@@ -310,15 +279,12 @@ always @(posedge clk) begin
                                 STATE = ADD_SUB_AND;
 
                                 PC_w = 1'b0;
-                                MemWrite = 1'b0;
-                                MemRead = 1'b0;
+                                MemWR = 1'b0;
                                 IRWrite = 1'b0;
                                 RegWrite = 1'b0;
                                 ABWrite = 1'b0;
                                 ALUoutWrite = 1'b0;
                                 EPCWrite = 1'b0;
-
-                                // missing LO/HI WRITE and ShiftControl
 
                                 CtrlALUSrcA = 2'b10; ///
                                 CtrlALUSrcB = 2'b00; ///
@@ -339,23 +305,18 @@ always @(posedge clk) begin
 
                     end
                 endcase
-
-                            // default: OPCODE INEXISTENTE! COMPLETAR DEPOIS 
             end
 
             ADD_SUB_AND: begin
                 STATE = CLOSEWRITE;
 
                 PC_w = 1'b0;
-                MemWrite = 1'b0;
-                MemRead = 1'b0;
+                MemWR = 1'b0;
                 IRWrite = 1'b0;
                 RegWrite = 1'b1; ///
                 ABWrite = 1'b0;
                 ALUoutWrite = 1'b0;
                 EPCWrite = 1'b0;
-
-                // missing LO/HI WRITE and ShiftControl
 
                 CtrlALUSrcA = 2'b00;
                 CtrlALUSrcB = 2'b00;
@@ -377,15 +338,12 @@ always @(posedge clk) begin
                 STATE = WAIT_END;
 
                 PC_w = 1'b0; ///
-                MemWrite = 1'b0;
-                MemRead = 1'b0;
+                MemWR = 1'b0;
                 IRWrite = 1'b0;
                 RegWrite = 1'b0; ///
                 ABWrite = 1'b0;
                 ALUoutWrite = 1'b0; ///
                 EPCWrite = 1'b0;
-
-                // missing LO/HI WRITE and ShiftControl
 
                 CtrlALUSrcA = 2'b00;
                 CtrlALUSrcB = 2'b00;
@@ -407,15 +365,12 @@ always @(posedge clk) begin
                 STATE = FETCH1;
 
                 PC_w = 1'b0; ///
-                MemWrite = 1'b0;
-                MemRead = 1'b0;
+                MemWR = 1'b0;
                 IRWrite = 1'b0;
                 RegWrite = 1'b0;
                 ABWrite = 1'b0;
                 ALUoutWrite = 1'b0;
                 EPCWrite = 1'b0;
-
-                // missing LO/HI WRITE and ShiftControl
 
                 CtrlALUSrcA = 2'b00;
                 CtrlALUSrcB = 2'b00;
@@ -434,7 +389,6 @@ always @(posedge clk) begin
             end
                 
         endcase
-        
     end
     
 end

@@ -13,6 +13,6 @@ module PCSource (
     assign data_out = (selector == 3'b000) ? data0 :
                      ((selector == 3'b001) ? data1 :
                      ((selector == 3'b010) ? data2 :
-                     ((selector == 3'b011) ? data3 : data4)));
+                     ((selector == 3'b011) ? data3 : data4)))
 
 endmodule

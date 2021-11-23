@@ -7,14 +7,9 @@ module ShiftSrcB (
 
     output wire [31:0] data_out
 );
-    
-    always @(*) begin
-        case (selector)
-            2'b00: data_out = data0;
-            2'b01: data_out = data1;
-            2'b10: data_out = data2;
-            2'b11: data_out = data3;
-        endcase
-    end
+
+    assign data_out = (selector == 2'b00) ? data0 : 
+                     ((selector == 2'b01) ? data1 : 
+                     ((selector == 2'b10) ? data2 : data3));
 
 endmodule

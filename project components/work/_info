@@ -1,0 +1,473 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Yves/Desktop/projetoCPU/project components
+vALUSrcA
+Z1 !s110 1637637527
+!i10b 1
+!s100 o]m_aC>W8z1JPB0V<Y=_90
+ITOQbdK7PPL>lY:i`Ln_Vk1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1637633812
+8C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcA.v
+FC:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcA.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1637637526.000000
+!s107 C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcA.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcA.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+n@a@l@u@src@a
+vALUSrcB
+R1
+!i10b 1
+!s100 XGQbZ0Df]DCOLOI6O:gUl2
+I?0b3i;m><0AzoS99hHiQa1
+R2
+R0
+w1637633730
+8C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcB.v
+FC:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcB.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z7 !s108 1637637527.000000
+!s107 C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcB.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcB.v|
+!i113 1
+R5
+R6
+n@a@l@u@src@b
+Ebanco_reg
+Z8 w1636504841
+Z9 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z10 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z11 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z12 8C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Banco_reg.vhd
+Z13 FC:/Users/Yves/Desktop/projetoCPU/project components/given_components/Banco_reg.vhd
+l0
+L69
+V:adHbk0Ym0TAKYW83J5Y[3
+!s100 hZ46CT_BzQl8j]02_Vf=o2
+Z14 OV;C;10.5b;63
+32
+Z15 !s110 1637637529
+!i10b 1
+Z16 !s108 1637637529.000000
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Banco_reg.vhd|
+Z18 !s107 C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Banco_reg.vhd|
+!i113 1
+Z19 o-work work -2002 -explicit
+Z20 tExplicit 1 CvgOpt 0
+Abehavioral_arch
+R9
+R10
+R11
+Z21 DEx4 work 9 banco_reg 0 22 :adHbk0Ym0TAKYW83J5Y[3
+l93
+L85
+Z22 VY7l=BkTbhRVIWWGL4mMo60
+Z23 !s100 RmVnX=Z0eZ>VP`R`^LJ]Q1
+R14
+32
+R15
+!i10b 1
+R16
+R17
+R18
+!i113 1
+R19
+R20
+vControl
+R1
+!i10b 1
+!s100 KUHPREEZfXTZf2ULRPh453
+Ih39nzC9lQV_G@W58l>E^z2
+R2
+R0
+w1637635579
+8C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Control.v
+FC:/Users/Yves/Desktop/projetoCPU/project components/made_components/Control.v
+L0 1
+R3
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Control.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Control.v|
+!i113 1
+R5
+R6
+n@control
+vCPU
+R1
+!i10b 1
+!s100 M0hgAbR4GGdF3A[d2L2<j1
+I?FF^[cVL4MA2CM;^YkiRZ3
+R2
+R0
+w1637634481
+8C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v
+FC:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v
+L0 1
+R3
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v|
+!i113 1
+R5
+R6
+n@c@p@u
+Einstr_reg
+Z24 w1219103941
+R10
+R11
+R0
+Z25 8C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Instr_Reg.vhd
+Z26 FC:/Users/Yves/Desktop/projetoCPU/project components/given_components/Instr_Reg.vhd
+l0
+L42
+VAfV1kYS402dnLRiFO;Z7_2
+!s100 _X]FAEHlMn?]L[?c6kUO?1
+R14
+32
+Z27 !s110 1637637528
+!i10b 1
+R7
+Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Instr_Reg.vhd|
+Z29 !s107 C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Instr_Reg.vhd|
+!i113 1
+R19
+R20
+Abehavioral_arch
+R10
+R11
+DEx4 work 9 instr_reg 0 22 AfV1kYS402dnLRiFO;Z7_2
+l59
+L56
+VTD836jU:>9m^d?0ed1C0O3
+!s100 _AcjR?n;fJneQZzaIjJFa3
+R14
+32
+R27
+!i10b 1
+R7
+R28
+R29
+!i113 1
+R19
+R20
+vIord
+Z30 !s110 1637637526
+!i10b 1
+!s100 13[R27A?E5@_iHhIDAe=C2
+IScTiPjhCQ=bDHEYNHgT8I1
+R2
+R0
+w1637634684
+8C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Iord.v
+FC:/Users/Yves/Desktop/projetoCPU/project components/made_components/Iord.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Iord.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Iord.v|
+!i113 1
+R5
+R6
+n@iord
+Ememoria
+Z31 w1636588305
+Z32 DPx4 work 13 ram_constants 0 22 BbIcggj=<H_W75Jb?WIoZ0
+Z33 DPx3 lpm 14 lpm_components 0 22 kbQff^T0P6bT[7n>=YCE40
+R9
+R10
+R11
+R0
+Z34 8C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Memoria.vhd
+Z35 FC:/Users/Yves/Desktop/projetoCPU/project components/given_components/Memoria.vhd
+l0
+L67
+V<[RFRXeHV^PMOiiinkBoS0
+!s100 __XEo>II7SFLX6Xa7VZA63
+R14
+32
+R27
+!i10b 1
+Z36 !s108 1637637528.000000
+Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Memoria.vhd|
+Z38 !s107 C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Memoria.vhd|
+!i113 1
+R19
+R20
+Abehavioral_arch
+R32
+R33
+R9
+R10
+R11
+DEx4 work 7 memoria 0 22 <[RFRXeHV^PMOiiinkBoS0
+l103
+L79
+VR9W83dOfA7lWR9j>i6THA2
+!s100 aLo:Seezh^aEQ@MaJf[__3
+R14
+32
+R27
+!i10b 1
+R36
+R37
+R38
+!i113 1
+R19
+R20
+vMemtoReg
+R30
+!i10b 1
+!s100 lQZOch2=hd^Wfcb?PVNS`1
+I_M2kS_V]bBD_ZG2MgLcdU3
+R2
+R0
+w1637637518
+8C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v
+FC:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v|
+!i113 1
+R5
+R6
+n@memto@reg
+vMuxMem
+R30
+!i10b 1
+!s100 o5<9K][?W<@ZW2zmULg2R1
+IX1@OYP<F;nAh:5ljn9BPD3
+R2
+R0
+w1637636757
+8C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxMem.v
+FC:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxMem.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxMem.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxMem.v|
+!i113 1
+R5
+R6
+n@mux@mem
+vPCSource
+R30
+!i10b 1
+!s100 S_UHEUWNE47N]iKjKV33V2
+ITE;aQE?a?a0RLn[Tj?]Dm3
+R2
+R0
+w1637628490
+8C:/Users/Yves/Desktop/projetoCPU/project components/made_components/PCSource.v
+FC:/Users/Yves/Desktop/projetoCPU/project components/made_components/PCSource.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/Yves/Desktop/projetoCPU/project components/made_components/PCSource.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/made_components/PCSource.v|
+!i113 1
+R5
+R6
+n@p@c@source
+Pram_constants
+R31
+R0
+R34
+R35
+l0
+L47
+VBbIcggj=<H_W75Jb?WIoZ0
+!s100 5;`Z:D@MR5CT6j_[c9;6h3
+R14
+32
+R27
+!i10b 1
+R36
+R37
+R38
+!i113 1
+R19
+R20
+Eregdesloc
+Z39 w1636588186
+R9
+R10
+R11
+R0
+Z40 8C:/Users/Yves/Desktop/projetoCPU/project components/given_components/RegDesloc.vhd
+Z41 FC:/Users/Yves/Desktop/projetoCPU/project components/given_components/RegDesloc.vhd
+l0
+L80
+V4GibeROOKf]^CUjTE67Bo0
+!s100 =0ZG0kkZKT?Zo?iX2R9=P1
+R14
+32
+R27
+!i10b 1
+R36
+Z42 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/given_components/RegDesloc.vhd|
+Z43 !s107 C:/Users/Yves/Desktop/projetoCPU/project components/given_components/RegDesloc.vhd|
+!i113 1
+R19
+R20
+Abehavioral_arch
+R9
+R10
+R11
+DEx4 work 9 regdesloc 0 22 4GibeROOKf]^CUjTE67Bo0
+l98
+L93
+VDFCTADkAb^4XhT09kD<k32
+!s100 3`2HClJO^bJLd6@PodWh?3
+R14
+32
+R27
+!i10b 1
+R36
+R42
+R43
+!i113 1
+R19
+R20
+vRegDst
+R30
+!i10b 1
+!s100 himz=^GT70MR@Ck[W?X8j2
+IQb:<Q>I1YIhjg98a?RbS52
+R2
+R0
+w1637633565
+8C:/Users/Yves/Desktop/projetoCPU/project components/made_components/RegDst.v
+FC:/Users/Yves/Desktop/projetoCPU/project components/made_components/RegDst.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/Yves/Desktop/projetoCPU/project components/made_components/RegDst.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/made_components/RegDst.v|
+!i113 1
+R5
+R6
+n@reg@dst
+Eregistrador
+Z44 w1219103383
+R10
+R11
+R0
+Z45 8C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Registrador.vhd
+Z46 FC:/Users/Yves/Desktop/projetoCPU/project components/given_components/Registrador.vhd
+l0
+L53
+VD=`aG^VOPEDP69ifb8G;52
+!s100 ^e8=Z<CbNTLXR@XGZJMQo3
+R14
+32
+R15
+!i10b 1
+R36
+Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Registrador.vhd|
+Z48 !s107 C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Registrador.vhd|
+!i113 1
+R19
+R20
+Abehavioral_arch
+R10
+R11
+DEx4 work 11 registrador 0 22 D=`aG^VOPEDP69ifb8G;52
+l66
+L65
+V<kVfXRZJUh40ja<<lN_3:3
+!s100 EXKKzlBL1ARAk5TCN4`Vg2
+R14
+32
+R15
+!i10b 1
+R36
+R47
+R48
+!i113 1
+R19
+R20
+Eula32
+Z49 w1637631625
+R9
+R10
+R11
+R0
+Z50 8C:/Users/Yves/Desktop/projetoCPU/project components/given_components/ula32.vhd
+Z51 FC:/Users/Yves/Desktop/projetoCPU/project components/given_components/ula32.vhd
+l0
+L63
+VM1`EhBco;Cb9<:6CC>b?e2
+!s100 bGmbVJaTC>R`I<lBgn7@L3
+R14
+32
+R15
+!i10b 1
+R16
+Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Yves/Desktop/projetoCPU/project components/given_components/ula32.vhd|
+Z53 !s107 C:/Users/Yves/Desktop/projetoCPU/project components/given_components/ula32.vhd|
+!i113 1
+R19
+R20
+Abehavioral
+R9
+R10
+R11
+DEx4 work 5 ula32 0 22 M1`EhBco;Cb9<:6CC>b?e2
+l89
+L79
+VF94M;2UJ^55hCen3Z[Kfk0
+!s100 1E>E2KjDKb=5dkES8U2ha0
+R14
+32
+R15
+!i10b 1
+R16
+R52
+R53
+!i113 1
+R19
+R20

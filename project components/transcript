@@ -1,0 +1,176 @@
+# Compile of Iord.v was successful.
+# Compile of MemtoReg.v was successful.
+# Compile of MuxMem.v was successful.
+# Compile of PCSource.v was successful.
+# Compile of RegDst.v was successful.
+# Compile of ALUSrcA.v was successful.
+# Compile of ALUSrcB.v was successful.
+# Compile of Control.v was successful.
+# Compile of CPU.v was successful.
+# Compile of Instr_Reg.vhd was successful.
+# Compile of Memoria.vhd was successful.
+# Compile of RegDesloc.vhd was successful.
+# Compile of Registrador.vhd was successful.
+# Compile of ula32.vhd was successful.
+# Compile of Banco_reg.vhd was successful.
+# 15 compiles, 0 failed with no errors.
+# Compile of Iord.v was successful.
+# Compile of MemtoReg.v was successful.
+# Compile of MuxMem.v was successful.
+# Compile of PCSource.v was successful.
+# Compile of RegDst.v was successful.
+# Compile of ALUSrcA.v was successful.
+# Compile of ALUSrcB.v was successful.
+# Compile of Control.v was successful.
+# Compile of CPU.v was successful.
+# Compile of Instr_Reg.vhd was successful.
+# Compile of Memoria.vhd was successful.
+# Compile of RegDesloc.vhd was successful.
+# Compile of Registrador.vhd was successful.
+# Compile of ula32.vhd was successful.
+# Compile of Banco_reg.vhd was successful.
+# 15 compiles, 0 failed with no errors.
+# Compile of Iord.v was successful.
+# Compile of MemtoReg.v was successful.
+# Compile of MuxMem.v was successful.
+# Compile of PCSource.v was successful.
+# Compile of RegDst.v was successful.
+# Compile of ALUSrcA.v was successful.
+# Compile of ALUSrcB.v was successful.
+# Compile of Control.v was successful.
+# Compile of CPU.v was successful.
+# Compile of Instr_Reg.vhd was successful.
+# Compile of Memoria.vhd was successful.
+# Compile of RegDesloc.vhd was successful.
+# Compile of Registrador.vhd was successful.
+# Compile of ula32.vhd was successful.
+# Compile of Banco_reg.vhd was successful.
+# 15 compiles, 0 failed with no errors.
+vsim -gui work.CPU
+# vsim -gui work.CPU 
+# Start time: 00:03:59 on Nov 23,2021
+# Loading work.CPU
+# Loading work.MuxMem
+# Loading work.Iord
+# Loading work.MemtoReg
+# Loading work.RegDst
+# Loading work.PCSource
+# Loading work.ALUSrcA
+# Loading work.ALUSrcB
+# Loading work.Control
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.registrador(behavioral_arch)
+# Loading ieee.numeric_std(body)
+# Loading work.banco_reg(behavioral_arch)
+# Loading lpm.lpm_components
+# Loading work.ram_constants
+# Loading work.memoria(behavioral_arch)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading lpm.lpm_common_conversion(body)
+# Loading lpm.lpm_device_families(body)
+# Loading lpm.lpm_ram_dq(lpm_syn)
+# Loading work.instr_reg(behavioral_arch)
+# Loading work.ula32(behavioral)
+# ** Warning: (vsim-3015) C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v(151): [PCDPC] - Port size (5) does not match connection size (32) for port 'data0'. The port definition is at: C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxMem.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /CPU/MUX_MEM File: C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxMem.v
+# ** Fatal: (vsim-3365) C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v(234): Too many port connections. Expected 10, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /CPU/M_MEM_ File: C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 00:04:01 on Nov 23,2021, Elapsed time: 0:00:02
+# Errors: 1, Warnings: 1
+# Compile of MuxMem.v was successful.
+vsim -gui work.CPU
+# vsim -gui work.CPU 
+# Start time: 00:06:16 on Nov 23,2021
+# Loading work.CPU
+# Loading work.MuxMem
+# Loading work.Iord
+# Loading work.MemtoReg
+# Loading work.RegDst
+# Loading work.PCSource
+# Loading work.ALUSrcA
+# Loading work.ALUSrcB
+# Loading work.Control
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.registrador(behavioral_arch)
+# Loading ieee.numeric_std(body)
+# Loading work.banco_reg(behavioral_arch)
+# Loading lpm.lpm_components
+# Loading work.ram_constants
+# Loading work.memoria(behavioral_arch)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading lpm.lpm_common_conversion(body)
+# Loading lpm.lpm_device_families(body)
+# Loading lpm.lpm_ram_dq(lpm_syn)
+# Loading work.instr_reg(behavioral_arch)
+# Loading work.ula32(behavioral)
+# ** Fatal: (vsim-3365) C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v(234): Too many port connections. Expected 10, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /CPU/M_MEM_ File: C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 00:06:16 on Nov 23,2021, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# Compile of Iord.v was successful.
+# Compile of MemtoReg.v was successful.
+# Compile of MuxMem.v was successful.
+# Compile of PCSource.v was successful.
+# Compile of RegDst.v was successful.
+# Compile of ALUSrcA.v was successful.
+# Compile of ALUSrcB.v was successful.
+# Compile of Control.v was successful.
+# Compile of CPU.v was successful.
+# Compile of Instr_Reg.vhd was successful.
+# Compile of Memoria.vhd was successful.
+# Compile of RegDesloc.vhd was successful.
+# Compile of Registrador.vhd was successful.
+# Compile of ula32.vhd was successful.
+# Compile of Banco_reg.vhd was successful.
+# 15 compiles, 0 failed with no errors.
+vsim -gui work.CPU
+# vsim -gui work.CPU 
+# Start time: 00:18:58 on Nov 23,2021
+# Loading work.CPU
+# Loading work.MuxMem
+# Loading work.Iord
+# Loading work.MemtoReg
+# Loading work.RegDst
+# Loading work.PCSource
+# Loading work.ALUSrcA
+# Loading work.ALUSrcB
+# Loading work.Control
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.registrador(behavioral_arch)
+# Loading ieee.numeric_std(body)
+# Loading work.banco_reg(behavioral_arch)
+# Loading lpm.lpm_components
+# Loading work.ram_constants
+# Loading work.memoria(behavioral_arch)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading lpm.lpm_common_conversion(body)
+# Loading lpm.lpm_device_families(body)
+# Loading lpm.lpm_ram_dq(lpm_syn)
+# Loading work.instr_reg(behavioral_arch)
+# Loading work.ula32(behavioral)
+# ** Warning: (vsim-3015) C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v(234): [PCDPC] - Port size (32) does not match connection size (16) for port 'data2'. The port definition is at: C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v(5).
+#    Time: 0 ps  Iteration: 0  Instance: /CPU/M_MEM_ File: C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v
+# ** Warning: (vsim-3015) C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v(234): [PCDPC] - Port size (32) does not match connection size (16) for port 'data3'. The port definition is at: C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /CPU/M_MEM_ File: C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v
+# Trace back: Error QStructure::sort: invalid command name ""
+#   <6:proc:11: ::QStructure::sort .main_pane.structure 0 ascending
+#   <5:eval:1: ::QStructure::structsort .main_pane.structure 0 ascending
+#   <4:eval:1: ::namespace inscope ::QStructure {structsort .main_pane.structure} 0 ascending
+#   >3:proc:26: ::.main_pane.structure.interior.cs.body.struct sort 0 ascending
+#   >2:proc:10: ::.main_pane.structure.interior.cs.body.struct _initializeSortColumn
+#   <1:eval:1: ::namespace inscope ::vsimwidgets::Hierarchy {::.main_pane.structure.interior.cs.body.struct _initializeSortColumn}
+# End time: 00:19:27 on Nov 23,2021, Elapsed time: 0:00:29
+# Errors: 14, Warnings: 2
