@@ -18,7 +18,7 @@ module MemtoReg (
                    ((selector == 4'b0011) ? data3 : 
                    ((selector == 4'b0100) ? data4 :
                    ((selector == 4'b0101) ? data5 :
-                   ((selector == 4'b0110) ? data6 :
+                   ((selector == 4'b0110) ? {{16{1'b0}}, data6} :
                  ((selector == 4'b0111) ? 32'd227 :
                   ((selector == 4'b1000) ? data7 : data8))))))));
     
