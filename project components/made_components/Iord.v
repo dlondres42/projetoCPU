@@ -11,9 +11,9 @@ module Iord (
 
     assign  data_out =  (selector == 3'b000)? data0 :
                         ((selector == 3'b001)? data1 :
-                        ((selector == 3'b010)? 32'd253 :
-                        ((selector == 3'b011)? 32'd254 :
-                        ((selector == 3'b100)? 32'd255 : data2))));
+                        ((selector == 3'b010)? 32'b00000000000000000000000011111101 :
+                        ((selector == 3'b011)? 32'b00000000000000000000000011111110 :
+                        ((selector == 3'b100)? 32'b00000000000000000000000011111111 : data2))));
 
 
 endmodule

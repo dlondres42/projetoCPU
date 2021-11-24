@@ -1,25 +1,24 @@
 module Control (
-    input wire      clk,
-    input wire      reset,
+    input wire clk,
+    input wire reset,
     // flags
-    input wire      Of, // overflow
-    input wire      Ng, // negative
-    input wire      Zr, // zero
-    input wire      Eq, // equal
-    input wire      Gt, // greater than
-    input wire      Lt, // less than
+    input wire Of, // overflow
+    input wire Ng, // negative
+    input wire Zr, // zero
+    input wire Eq, // equal
+    input wire Gt, // greater than
+    input wire Lt, // less than
 
-    input wire [5:0]    OPCODE,
-    input wire [5:0]    FUNCT,
-    // controladores de 1 bit
-    output reg      PC_w,
-    output reg      MemWR,
-    output reg      MemRead,
-	output reg      IRWrite,
-	output reg      RegWrite,
-	output reg      ABWrite,
-    output reg      ALUoutWrite,
-    output reg      EPCWrite,
+    input wire [5:0] OPCODE,
+    input wire [5:0] FUNCT,
+    // 1 bit control wires
+    output reg PC_w,
+    output reg MemWR,
+    output reg MemRead,
+	output reg IRWrite,
+	output reg RegWrite,
+	output reg ABWrite,
+    output reg ALUoutWrite,
 
     // mux control
     output reg [1:0] CtrlALUSrcA,
@@ -29,59 +28,45 @@ module Control (
     output reg [3:0] CtrlMemtoReg,
     output reg [2:0] CtrlIord,
 
-    //  shift control
-    output reg      CtrlShifSrcA,
-    output reg [1:0] CtrlShifSrcB,
-
-        // ctrl div
-    output reg      CtrlDivSrcA,
-    output reg      CtrlDivSrcB,
-
-        // mux source B control
-    output reg CtrlMuxSSrcB,
-
    // ALU control signal
     output reg [2:0] CtrlULA //ALUOP
-
-   // controlador especial para o reset
 );
 
-// VARIAVEIS
+// STATE and COUNTER
 reg [6:0] STATE;
+reg [5:0] COUNTER;
 
 // OPCODES
-parameter instruct_R =   6'h0;
+parameter OP_R =   6'b000000;
 
-// estados
-parameter FETCH1 = 7'd0;
-parameter FETCH2 = 7'd1;
-parameter FETCH3 = 7'd2;
-parameter DECODE = 7'd3;
-parameter DECODE2 = 7'd4;
-parameter WAIT = 7'd5;
-parameter EXECUTE = 7'd6;
+// STATES
+parameter STATE_RESET =        7'b0000000;  // 0
+parameter STATE_CLOSEWRITE =   7'b0000001;  // 1
+parameter STATE_WAIT =         7'b0000010;  // 2
+parameter STATE_FETCH1 =       7'b0000011;  // 3
+parameter STATE_FETCH2 =       7'b0000100;  // 4
+parameter STATE_FETCH3 =       7'b0000101;  // 5
+parameter STATE_DECODE =       7'b0000110;  // 6
+parameter STATE_ADD =          7'b0000111;  // 7
+parameter STATE_AND =          7'b0001000;  // 8
+parameter STATE_SUB =          7'b0001001;  // 9
+parameter STATE_ADD_AND_SUB =  7'b0001010;  // 10
 
-parameter ADD_SUB_AND = 7'd7;
-parameter CLOSEWRITE = 7'd8;
-parameter WAIT_END = 7'd9;
-
-
-// instruções R
-parameter R_FORMAT = 6'd0;
-// FUNCT
-parameter ADD = 6'h20;
-parameter AND = 6'h24;
-parameter SUB = 6'h22;
+// FUNCT (for R instructions)
+parameter FUNCT_ADD = 6'b100000;
+parameter FUNCT_AND = 6'b100100;
+parameter FUNCT_SUB = 6'b100010;
 
 
 initial begin
-    STATE = FETCH1;
+    STATE = STATE_RESET;
 end
 
 always @(posedge clk) begin
-    
     if (reset == 1'b1) begin
-        STATE = FETCH1;
+        // NEXT STATE and COUNTER
+        STATE = STATE_FETCH1;
+        COUNTER = 6'b000000;
 
         PC_w = 1'b0;
         MemWR = 1'b0; 
@@ -103,16 +88,16 @@ always @(posedge clk) begin
         CtrlDivSrcB = 2'b00;
         CtrlMuxSSrcB = 1'b0;
         CtrlULA = 3'b000;
-
-        // COUNTER 
     end
     else begin
         case (STATE)
-            FETCH1: begin
-                STATE = FETCH2;
+            STATE_FETCH1: begin
+                // NEXT STATE and COUNTER
+                STATE = STATE_FETCH2;
+                COUNTER = 6'b000000;
 
                 PC_w = 1'b0;
-                MemWR = 1'b0;
+                MemWR = 1'b0; /// 0 stands for READ ; 1 stands for WRITE
                 IRWrite = 1'b0;
                 RegWrite = 1'b0; ///
                 ABWrite = 1'b0;
@@ -131,12 +116,11 @@ always @(posedge clk) begin
                 CtrlDivSrcB = 2'b00;
                 CtrlMuxSSrcB = 1'b0;
                 CtrlULA = 3'b001; ///
-
-                // COUNTER 
             end
             
-            FETCH2: begin
-                STATE = FETCH3;
+            STATE_FETCH2: begin
+                STATE = STATE_FETCH3;
+                COUNTER = 6'b000000;
 
                 PC_w = 1'b1; ///
                 MemWR = 1'b0;
@@ -158,12 +142,11 @@ always @(posedge clk) begin
                 CtrlDivSrcB = 2'b00;
                 CtrlMuxSSrcB = 1'b0;
                 CtrlULA = 3'b000;
-
-                // COUNTER 
             end
             
-            FETCH3: begin
-                STATE = DECODE;
+            STATE_FETCH3: begin
+                STATE = STATE_DECODE;
+                COUNTER = 6'b000000;
 
                 PC_w = 1'b0; ///
                 MemWR = 1'b0;
@@ -185,12 +168,10 @@ always @(posedge clk) begin
                 CtrlDivSrcB = 2'b00;
                 CtrlMuxSSrcB = 1'b0;
                 CtrlULA = 3'b000;
-
-                // COUNTER 
             end
             
-            DECODE: begin
-                STATE = EXECUTE;
+            STATE_DECODE: begin
+                COUNTER = 6'b000000;
 
                 PC_w = 1'b0;
                 MemWR = 1'b0;
@@ -212,103 +193,108 @@ always @(posedge clk) begin
                 CtrlDivSrcB = 2'b00;
                 CtrlMuxSSrcB = 1'b0;
                 CtrlULA = 3'b001; ///
-
-                // COUNTER
-            end
-
-            EXECUTE: begin
-                ABWrite = 1'b0;
-                case(OPCODE)
-                    R_FORMAT: begin
+                
+                // CASE STATEMENT TO SELECT R INSTRUTION
+                case (OPCODE)
+                    OP_R: begin
                         case (FUNCT)
-                            ADD: begin
-                                STATE = ADD_SUB_AND;
-
-                                PC_w = 1'b0;
-                                MemWR = 1'b0;
-                                IRWrite = 1'b0;
-                                RegWrite = 1'b0;
-                                ABWrite = 1'b0;
-                                ALUoutWrite = 1'b0;
-                                EPCWrite = 1'b0;
-
-                                CtrlALUSrcA = 2'b10; ///
-                                CtrlALUSrcB = 2'b00; ///
-                                CtrlRegDst = 3'b000;
-                                CtrlPCSource = 3'b000;
-                                CtrlMemtoReg = 4'b0000;
-                                CtrlIord = 3'b000;
-                                CtrlShifSrcA = 1'b0;
-                                CtrlShifSrcB = 1'b0;
-                                CtrlDivSrcA = 1'b0;
-                                CtrlDivSrcB = 2'b00;
-                                CtrlMuxSSrcB = 1'b0;
-                                CtrlULA = 3'b001; ///
-
-                                // COUNTER 
+                            FUNCT_ADD: begin
+                                STATE = STATE_ADD;
                             end
 
-                            AND: begin
-                                STATE = ADD_SUB_AND;
-
-                                PC_w = 1'b0;
-                                MemWR = 1'b0;
-                                IRWrite = 1'b0;
-                                RegWrite = 1'b0;
-                                ABWrite = 1'b0;
-                                ALUoutWrite = 1'b0;
-                                EPCWrite = 1'b0;
-
-                                CtrlALUSrcA = 2'b10; ///
-                                CtrlALUSrcB = 2'b00; ///
-                                CtrlRegDst = 3'b000;
-                                CtrlPCSource = 3'b000;
-                                CtrlMemtoReg = 4'b0000;
-                                CtrlIord = 3'b000;
-                                CtrlShifSrcA = 1'b0;
-                                CtrlShifSrcB = 1'b0;
-                                CtrlDivSrcA = 1'b0;
-                                CtrlDivSrcB = 2'b00;
-                                CtrlMuxSSrcB = 1'b0;
-                                CtrlULA = 3'b011; ///
-
-                                // COUNTER 
+                            FUNCT_AND: begin
+                                STATE = STATE_AND;
                             end
 
-                            SUB: begin
-                                STATE = ADD_SUB_AND;
-
-                                PC_w = 1'b0;
-                                MemWR = 1'b0;
-                                IRWrite = 1'b0;
-                                RegWrite = 1'b0;
-                                ABWrite = 1'b0;
-                                ALUoutWrite = 1'b0;
-                                EPCWrite = 1'b0;
-
-                                CtrlALUSrcA = 2'b10; ///
-                                CtrlALUSrcB = 2'b00; ///
-                                CtrlRegDst = 3'b000;
-                                CtrlPCSource = 3'b000;
-                                CtrlMemtoReg = 4'b0000;
-                                CtrlIord = 3'b000;
-                                CtrlShifSrcA = 1'b0;
-                                CtrlShifSrcB = 1'b0;
-                                CtrlDivSrcA = 1'b0;
-                                CtrlDivSrcB = 2'b00;
-                                CtrlMuxSSrcB = 1'b0;
-                                CtrlULA = 3'b010; ///
-
-                                // COUNTER 
+                            FUNCT_SUB: begin
+                                STATE = STATE_SUB;
                             end
                         endcase
-
                     end
                 endcase
             end
 
-            ADD_SUB_AND: begin
-                STATE = CLOSEWRITE;
+            STATE_ADD: begin
+                STATE = STATE_ADD_AND_SUB;
+                COUNTER = 6'b000000;
+
+                PC_w = 1'b0;
+                MemWR = 1'b0;
+                IRWrite = 1'b0;
+                RegWrite = 1'b0;
+                ABWrite = 1'b0;
+                ALUoutWrite = 1'b0;
+                EPCWrite = 1'b0;
+
+                CtrlALUSrcA = 2'b10; ///
+                CtrlALUSrcB = 2'b00; ///
+                CtrlRegDst = 3'b000;
+                CtrlPCSource = 3'b000;
+                CtrlMemtoReg = 4'b0000;
+                CtrlIord = 3'b000;
+                CtrlShifSrcA = 1'b0;
+                CtrlShifSrcB = 1'b0;
+                CtrlDivSrcA = 1'b0;
+                CtrlDivSrcB = 2'b00;
+                CtrlMuxSSrcB = 1'b0;
+                CtrlULA = 3'b001; ///
+            end
+
+            STATE_AND: begin
+                STATE = STATE_ADD_AND_SUB;
+                COUNTER = 6'b000000;
+
+                PC_w = 1'b0;
+                MemWR = 1'b0;
+                IRWrite = 1'b0;
+                RegWrite = 1'b0;
+                ABWrite = 1'b0;
+                ALUoutWrite = 1'b0;
+                EPCWrite = 1'b0;
+
+                CtrlALUSrcA = 2'b10; ///
+                CtrlALUSrcB = 2'b00; ///
+                CtrlRegDst = 3'b000;
+                CtrlPCSource = 3'b000;
+                CtrlMemtoReg = 4'b0000;
+                CtrlIord = 3'b000;
+                CtrlShifSrcA = 1'b0;
+                CtrlShifSrcB = 1'b0;
+                CtrlDivSrcA = 1'b0;
+                CtrlDivSrcB = 2'b00;
+                CtrlMuxSSrcB = 1'b0;
+                CtrlULA = 3'b010; ///
+            end
+
+            STATE_SUB: begin
+                STATE = STATE_ADD_AND_SUB;
+                COUNTER = 6'b000000;
+
+                PC_w = 1'b0;
+                MemWR = 1'b0;
+                IRWrite = 1'b0;
+                RegWrite = 1'b0;
+                ABWrite = 1'b0;
+                ALUoutWrite = 1'b0;
+                EPCWrite = 1'b0;
+
+                CtrlALUSrcA = 2'b10; ///
+                CtrlALUSrcB = 2'b00; ///
+                CtrlRegDst = 3'b000;
+                CtrlPCSource = 3'b000;
+                CtrlMemtoReg = 4'b0000;
+                CtrlIord = 3'b000;
+                CtrlShifSrcA = 1'b0;
+                CtrlShifSrcB = 1'b0;
+                CtrlDivSrcA = 1'b0;
+                CtrlDivSrcB = 2'b00;
+                CtrlMuxSSrcB = 1'b0;
+                CtrlULA = 3'b001; ///
+            end
+
+            STATE_ADD_AND_SUB: begin
+                STATE = STATE_CLOSEWRITE;
+                COUNTER = 6'b000000;
 
                 PC_w = 1'b0;
                 MemWR = 1'b0;
@@ -330,12 +316,11 @@ always @(posedge clk) begin
                 CtrlDivSrcB = 2'b00;
                 CtrlMuxSSrcB = 1'b0;
                 CtrlULA = 3'b000;
-
-                // COUNTER 
             end
 
-            CLOSEWRITE: begin
-                STATE = WAIT_END;
+            STATE_CLOSEWRITE: begin
+                STATE = STATE_WAIT;
+                COUNTER = 6'b000000;
 
                 PC_w = 1'b0; ///
                 MemWR = 1'b0;
@@ -357,12 +342,11 @@ always @(posedge clk) begin
                 CtrlDivSrcB = 2'b00;
                 CtrlMuxSSrcB = 1'b0;
                 CtrlULA = 3'b000;
-
-                // COUNTER 
             end
 
-            WAIT_END: begin
-                STATE = FETCH1;
+            STATE_WAIT: begin
+                STATE = STATE_FETCH1;
+                COUNTER = 6'b000000;
 
                 PC_w = 1'b0; ///
                 MemWR = 1'b0;
@@ -384,13 +368,11 @@ always @(posedge clk) begin
                 CtrlDivSrcB = 2'b00;
                 CtrlMuxSSrcB = 1'b0;
                 CtrlULA = 3'b000;
-
-                // COUNTER 
             end
                 
         endcase
+
     end
-    
 end
 
 endmodule

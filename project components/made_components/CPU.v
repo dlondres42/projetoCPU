@@ -3,14 +3,27 @@ module CPU (
     input wire reset
 );
     // DATA WIRES
-    
 ////////////////////////////////////////////CONTROL WIRES////////////////////////////////////////////
+    // ALU flags – control
+    wire Of; // overflow
+    wire Ng; // negative
+    wire Zr; // zero
+    wire Eq; // equal
+    wire Gt; // greater than
+    wire Lt; // less than
+
     // 1 bit control wires
     wire PC_w;
 		
     // memory control
     wire MemWR;
     wire MemRead;
+
+    // write's
+    wire IRWrite;
+    wire RegWrite;
+    wire ABWrite;
+    wire ALUoutWrite;
 
     // mux control
     wire [1:0] CtrlALUSrcA;
@@ -20,36 +33,9 @@ module CPU (
     wire [3:0] CtrlMemtoReg;
     wire [2:0] CtrlIord;
 
-    // shift control
-    wire CtrlShifSrcA;
-    wire [1:0] CtrlShifSrcB;
-
-    // ctrl div
-    wire CtrlDivSrcA;
-    wire CtrlDivSrcB;
-
-    // mux source B control
-    wire CtrlMuxSSrcB;
-
     // ALU control signal
     wire [2:0] CtrlULA;
-
-    // ALU flags – control
-    wire Of; // overflow
-    wire Ng; // negative
-    wire Zr; // zero
-    wire Eq; // equal
-    wire Gt; // greater than
-    wire Lt; // less than
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    // write's //
-    wire IRWrite;
-    wire RegWrite;
-    wire ABWrite;
-    wire ALUoutWrite;
-    wire EPCWrite;
-    
     // out's //
     wire [31:0] PC_out;
     wire [31:0] Memdata_out;
@@ -63,47 +49,83 @@ module CPU (
     wire [15:0] LO_out;
     wire [15:0] HI_out;
     wire [31:0] ShiftReg_out;
+    wire [31:0] ExtendShiftLeft16_out;
     wire [31:0] Iord_out;
-    wire [15:0] MDR_out;
-    wire [31:0] DivSrcA_out;
-    wire [31:0] DivSrcB_out;
-    wire [31:0] MuxSSrcB_out;
-    wire [31:0] ShiftSrcA_out;
-    wire [31:0] Extend16_32_out;
     wire [31:0] MemtoReg_out;
     wire [31:0] ULA_out;
     wire [31:0] A_out;
     wire [31:0] B_out;
     wire [31:0] ALUout_out;
-    wire [31:0] MuxMem_out;
+    wire [31:0] MuxMem_out; // implementar MuxMem
     
     wire [31:0] ALU_result;
-    
-    wire [31:0] ExtendShiftLeft2;
-    wire [31:0] ExtendShiftLeft16;
-    wire [31:0] LTExtend_out;
-
-        // IR entries
+    // IR entries
     wire [5:0] opcode;
     wire [4:0] rs;
     wire [4:0] rt;
     wire [15:0] immediate;
-   
-        // RegBase entries
+    // RegBase entries
     wire [31:0] RB_to_A;
     wire [31:0] RB_to_B;
- 
-    
-////////////////////////////////////////////////////
 
-    Registrador EPC_(
-        clk,
-        reset,
-        EPCWrite,
-        ALU_result,
-        EPC_out
+//////////////////////////////////////////////// MUXES //////////////////////////////////////////////    
+    ALUSrcA M_ULAA_(
+        CtrlALUSrcA,
+        PC_out,
+        Memdata_out,
+        A_out,
+        ALUSrcA_out
     );
 
+    ALUSrcB M_ULAB_(
+        CtrlALUSrcB,
+        B_out,
+        immediate,
+        ExtendShiftLeft2,
+        ALUSrcB_out
+    );
+
+    Iord M_IORD_(
+        CtrlIord,
+        PC_out,
+        ALU_out,
+        ALU_result,
+        Iord_out
+    );
+
+    MemtoReg M_MEM_(
+        CtrlMemtoReg,
+        ALU_out,
+        MDRls_out,
+        LO_out,
+        HI_out,
+        ShiftReg_out,
+        ExtendShiftLeft16_out,
+        immediate,
+        ALU_result,
+        LTExtend_out,
+        MemtoReg_out
+    );
+
+    RegDst M_REG_(
+        CtrlRegDst,
+        rt,
+        immediate[15:11],
+        RegDst_out
+    );
+
+    PCSource M_PC_(
+        CtrlPCSource,
+        MDRls_out,
+        ALU_result,
+        ALU_out,
+        PC_out,
+        EPC_out,
+        PCSource_out
+    );
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////// GIVEN COMPONENTES ///////////////////////////////////////////
     Registrador ALUout_(
         clk,
         reset,
@@ -128,6 +150,14 @@ module CPU (
         B_out
     );
 
+    Registrador PC_(
+        clk,
+        reset,
+        PC_w,
+        PCSource_out,
+        PC_out
+    );
+
     Banco_reg RegBase_(
         clk,
         reset,
@@ -140,27 +170,12 @@ module CPU (
         RB_to_B
     );
 
-    Registrador PC_(
-        clk,
-        reset,
-        PC_w,
-        PCSource_out,
-        PC_out
-    );
-
-    MuxMem MUX_MEM(
-        CtrlMuxMem,
-        B_out,
-        MDR_out,
-        MuxMem_out
-    );
-
     Memoria Memdata_(
         Iord_out,
         clk,
         MemWR,
-        MuxMem_out,  // checar com o monitor
-        Memdata_out  // checar com o monitor
+        MuxMem_out,
+        Memdata_out
     );
 
     Instr_Reg IR_(
@@ -178,7 +193,7 @@ module CPU (
         ALUSrcA_out,
         ALUSrcB_out,
         CtrlULA,
-        ULA_out,
+        ALU_result,
         Of,
         Ng,
         Zr,
@@ -186,97 +201,7 @@ module CPU (
         Gt,
         Lt
     );
-
-/*    ShiftSrcB M_ShiftSrcB_(
-        CtrlShifSrcB,
-        immediate[10:6],
-        rt,
-        Extend16_32_out,
-        Memdata_out
-    );
-
-    ShiftSrcA M_ShiftSrcA_(
-        CtrlShifSrcA,
-        rt,
-        rs,
-        ShiftSrcA_out
-    );
-
-    MuxSSrcB M_SSrcB_(
-        CtrlMuxSSrcB,
-        immediate[10:6],
-        rt,
-        MuxSSrcB_out
-    );
-    
-    DivSrcB M_DIVB_(
-        CtrlDivSrcB,
-        rt,
-        Memdata_out,
-        DivSrcB_out
-    );
-    
-    DivSrcA M_DIVA_(
-        CtrlDivSrcA,
-        rs,
-        MDR_out,
-        DivSrcA_out
-    ); */
-
-    Iord M_IORD_(
-        CtrlIord,
-        PC_out,
-        ALU_out,
-        ALU_result,
-        Iord_out
-    );
-
-    MemtoReg M_MEM_(
-        CtrlMemtoReg,
-        ALU_out,
-        MDRls_out,
-        LO_out,
-        HI_out,
-        ShiftReg_out,
-        ExtendShiftLeft16,
-        immediate,
-        ALU_result,
-        LTExtend_out,
-        MemtoReg_out
-    );
-
-    RegDst M_REG_(
-        CtrlRegDst,
-        rt,
-        immediate[15:11],
-        RegDst_out
-    );
-
-    PCSource M_PC_(
-        CtrlPCSource,
-        MDRls_out,
-        ALU_result,
-        ALU_out,
-        PC_out,
-        EPC_out,
-        PCSource_out
-    );
-
-    ALUSrcA M_ULAA_(
-        CtrlALUSrcA,
-        PC_out,
-        Memdata_out,
-        A_out,
-        ALUSrcA_out
-    );
-
-    ALUSrcB M_ULAB_(
-        CtrlALUSrcB,
-        B_out,
-        immediate,
-        ExtendShiftLeft2,
-        ALUSrcB_out
-    );
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
     Control Control_u(
         clk,
@@ -296,18 +221,12 @@ module CPU (
         RegWrite,
         ABWrite,
         ALUoutWrite,
-        EPCWrite,
         CtrlALUSrcA,
         CtrlALUSrcB,
         CtrlRegDst,
         CtrlPCSource,
         CtrlMemtoReg,
         CtrlIord,
-        CtrlShifSrcA,
-        CtrlShifSrcB,
-        CtrlDivSrcA,
-        CtrlDivSrcB,
-        CtrlMuxSSrcB,
         CtrlULA //ALUOP
     );
     
