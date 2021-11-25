@@ -1,13 +1,17 @@
 module ALUSrcA(
-    input wire [1:0] selector,
-    input wire [31:0] data0,
-    input wire [31:0] data1,
-    input wire [31:0] data2,
-
-    output wire [31:0] data_out
+    input wire [1:0] seletor,
+    input wire [31:0] PC_out,
+    input wire [31:0] MDR_out,
+    input wire [31:0] A_out,
+    output reg [31:0] data_out
 );
 
-    assign data_out = (selector == 2'b00) ? data0 :
-                    ((selector == 2'b01) ? data1 : data2);
+always@(*) begin
+    case(seletor)
+        2'b00: data_out = PC_out;
+        2'b01: data_out = MDR_out;
+        2'b11: data_out = A_out;
+    endcase
+end
 
 endmodule

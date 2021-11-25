@@ -1,15 +1,15 @@
-module ShiftSrcB (
-    input wire [1:0] selector,
-    input wire [31:0] data0,
-    input wire [31:0] data1,
-    input wire [31:0] data2,
-    input wire [31:0] data3,
-
-    output wire [31:0] data_out
+module ShiftSrcB(
+    input wire seletor,
+    input wire [31:0] B_out, 
+    input wire [15:0] IMMEDIATE,
+    output reg [4:0] data_out
 );
 
-    assign data_out = (selector == 2'b00) ? data0 : 
-                     ((selector == 2'b01) ? data1 : 
-                     ((selector == 2'b10) ? data2 : data3));
+always@(*) begin
+    case(seletor)
+		2'b00: data_out = B_out[4:0];
+		2'b01: data_out = IMMEDIATE[10:6];
+	endcase
+end
 
 endmodule

@@ -1,11 +1,14 @@
-module ShiftSrcA (
-    input wire selector,
-    input wire [31:0] data0,
-    input wire [31:0] data1,
-
-    output wire [31:0] data_out
+module ShiftSrcA(
+    input wire seletor,
+    input wire [31:0] B_out,
+    input wire [31:0] A_out,
+    output reg [31:0] data_out
 );
-    
-    assign data_out = (selector) ? data1 : data0;
 
+always@(*)begin
+    case (seletor)
+		2'b00: data_out = B_out;
+		2'b10: data_out = A_out;
+	endcase
+end
 endmodule

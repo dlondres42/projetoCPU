@@ -1,16 +1,18 @@
 module ALUSrcB(
-    input wire [1:0] selector,
-    input wire [31:0] data0,
-    input wire [15:0] data1,
-    input wire [31:0] data2,
-
-    output wire [31:0] data_out
+    input wire [1:0] seletor,
+    input wire [31:0] B_out,
+    input wire [31:0] SignXtend16to32_out,
+    input wire [31:0] ShiftLeft2_out,
+    output reg [31:0] data_out
 );
 
-    assign data_out =   (selector == 2'b00) ? data0 : 
-                        ((selector == 2'b01) ? 32'd4 : 
-                        ((selector == 2'b10) ? {{16{1'b0}}, data1} : data2));
-
-
-
+always@(*) begin
+    case(seletor)
+		2'b00: data_out = B_out;
+		2'b01: data_out = 32'b00000000000000000000000000000100;
+		2'b10: data_out = SignXtend16to32_out;
+        2'b11: data_out = ShiftLeft2_out;
+	endcase 
+end
+	
 endmodule
