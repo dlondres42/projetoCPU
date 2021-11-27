@@ -175,7 +175,7 @@ always @(posedge clk) begin
         CtrlDiv = 0;
         CtrlSetSize = 2'd0;
         CtrlLoadSize = 2'd0;
-        CtrlRegDst = 3'd2;
+        CtrlRegDst = 3'd1;
         CtrlMemtoReg = 4'd8;
         CtrlPCSource = 3'd0;
         CtrlALUSrcA = 2'd0;
@@ -236,7 +236,7 @@ always @(posedge clk) begin
                             ADD: begin
                                 CURRENT_STATE = ADD_SUB_AND;
 
-                                CtrlALUSrcA = 2'd1; ///
+                                CtrlALUSrcA = 2'd2; ///
                                 CtrlALUSrcB = 2'd0; ///
                                 CtrlALU = 3'd1; ///
                                 ALUoutWrite = 1;
@@ -245,7 +245,7 @@ always @(posedge clk) begin
                             SUB: begin
                                 CURRENT_STATE = ADD_SUB_AND;
 
-                                CtrlALUSrcA = 2'd1; ///
+                                CtrlALUSrcA = 2'd2; ///
                                 CtrlALUSrcB = 2'd0; ///
                                 CtrlALU = 3'd2; ///
                                 ALUoutWrite = 1;
@@ -254,7 +254,7 @@ always @(posedge clk) begin
                             AND: begin
                                 CURRENT_STATE = ADD_SUB_AND;
 
-                                CtrlALUSrcA = 2'd1; ///
+                                CtrlALUSrcA = 2'd2; ///
                                 CtrlALUSrcB = 2'd0; ///
                                 CtrlALU = 3'd3; ///
                                 ALUoutWrite = 1;
@@ -276,7 +276,7 @@ always @(posedge clk) begin
                                 CURRENT_STATE = CLOSE_WRITE;
 
                                 CtrlMemtoReg = 4'd2;
-                                CtrlRegDst = 3'd1;
+                                CtrlRegDst = 3'd3;
                                 RegWrite = 1;
                             end
 
@@ -284,14 +284,14 @@ always @(posedge clk) begin
                                 CURRENT_STATE = CLOSE_WRITE;
 
                                 CtrlMemtoReg = 4'd03;
-                                CtrlRegDst = 3'd1;
+                                CtrlRegDst = 3'd3;
                                 RegWrite = 1;
                             end
                             
                             JR: begin
                                 CURRENT_STATE = CLOSE_WRITE;
 
-                                CtrlALUSrcA = 2'd1;
+                                CtrlALUSrcA = 2'd2;
                                 CtrlALU = 3'd0;
                                 CtrlPCSource = 3'd1;
                                 PCWrite = 1;
@@ -325,10 +325,10 @@ always @(posedge clk) begin
                             SLT: begin
                                 CURRENT_STATE = CLOSE_WRITE;
 
-                                CtrlALUSrcA = 2'd1;
+                                CtrlALUSrcA = 2'd2;
                                 CtrlALUSrcB = 2'd0;
                                 CtrlALU = 3'd7;
-                                CtrlRegDst = 3'd1;
+                                CtrlRegDst = 3'd3;
                                 CtrlMemtoReg = 4'd4;
                                 RegWrite = 1;
                             end
@@ -378,7 +378,7 @@ always @(posedge clk) begin
                     ADDIU, ADDI: begin
                         CURRENT_STATE = ADDI_ADDIU;
 
-                        CtrlALUSrcA = 2'd1; ///
+                        CtrlALUSrcA = 2'd2; ///
                         CtrlALUSrcB = 2'd2; ///
                         CtrlALU = 3'd1; ///
                         ALUoutWrite = 1; ///
@@ -387,7 +387,7 @@ always @(posedge clk) begin
                     BLE: begin
                         CURRENT_STATE = BLE2;
                         
-                        CtrlALUSrcA = 2'd1; 
+                        CtrlALUSrcA = 2'd2; 
                         CtrlALUSrcB = 2'd0; 
                         CtrlALU = 3'b111;
                     end
@@ -395,7 +395,7 @@ always @(posedge clk) begin
                     BGT: begin
                         CURRENT_STATE = BGT2;
 
-                        CtrlALUSrcA = 2'd1; 
+                        CtrlALUSrcA = 2'd2; 
                         CtrlALUSrcB = 2'd0; 
                         CtrlALU = 3'b111;
                     end
@@ -403,7 +403,7 @@ always @(posedge clk) begin
                     BEQ: begin
                         CURRENT_STATE = BEQ2;
 
-                        CtrlALUSrcA = 2'd1; 
+                        CtrlALUSrcA = 2'd2; 
                         CtrlALUSrcB = 2'd0; 
                         CtrlALU = 3'b111;
                     end
@@ -411,7 +411,7 @@ always @(posedge clk) begin
                     BNE: begin
                         CURRENT_STATE = BNE2;
 
-                        CtrlALUSrcA = 2'd1; 
+                        CtrlALUSrcA = 2'd2; 
                         CtrlALUSrcB = 2'd0;  
                         CtrlALU = 3'b111;
                     end
@@ -419,7 +419,7 @@ always @(posedge clk) begin
                     BLM: begin
                         CURRENT_STATE = BLM2;
 
-                        CtrlALUSrcA = 1; 
+                        CtrlALUSrcA = 2'd2; 
                         CtrlALUSrcB = 1; 
                         CtrlALU = 3'b000;
                         CtrlIord = 3'd1;
@@ -428,7 +428,7 @@ always @(posedge clk) begin
                     SW: begin
                         CURRENT_STATE = SW2;
 
-                        CtrlALUSrcA = 2'd1;
+                        CtrlALUSrcA = 2'd2;
                         CtrlALUSrcB = 2'd2;
                         CtrlALU = 3'd1;
                         ALUoutWrite = 1;
@@ -437,7 +437,7 @@ always @(posedge clk) begin
                     SH: begin
                         CURRENT_STATE = SH2;
                         
-                        CtrlALUSrcA = 2'd1;
+                        CtrlALUSrcA = 2'd2;
                         CtrlALUSrcB = 2'd2;
                         CtrlALU = 3'd1;
                         ALUoutWrite = 1;
@@ -446,7 +446,7 @@ always @(posedge clk) begin
                     SB: begin
                         CURRENT_STATE = SB2;
                         
-                        CtrlALUSrcA = 2'd1;
+                        CtrlALUSrcA = 2'd2;
                         CtrlALUSrcB = 2'd2;
                         CtrlALU = 3'd1;
                         ALUoutWrite = 1;
@@ -455,7 +455,7 @@ always @(posedge clk) begin
                     LW: begin
                         CURRENT_STATE = LW2;
                         
-                        CtrlALUSrcA = 2'd1;
+                        CtrlALUSrcA = 2'd2;
                         CtrlALUSrcB = 2'd2;
                         CtrlALU = 3'd1;
                         CtrlIord = 1;
@@ -465,7 +465,7 @@ always @(posedge clk) begin
                     LH: begin
                         CURRENT_STATE = LH2;
 
-                        CtrlALUSrcA = 2'd1;
+                        CtrlALUSrcA = 2'd2;
                         CtrlALUSrcB = 2'd2;
                         CtrlALU = 3'd1;
                         CtrlIord = 1;
@@ -475,7 +475,7 @@ always @(posedge clk) begin
                     LB: begin
                         CURRENT_STATE = LB2;
                         
-                        CtrlALUSrcA = 2'd1;
+                        CtrlALUSrcA = 2'd2;
                         CtrlALUSrcB = 2'd2;
                         CtrlALU = 3'd1;
                         CtrlIord = 1;
@@ -485,7 +485,7 @@ always @(posedge clk) begin
                     SLTI: begin
                         CURRENT_STATE = CLOSE_WRITE;
 
-                        CtrlALUSrcA = 2'd1;
+                        CtrlALUSrcA = 2'd2;
                         CtrlALUSrcB = 2'd2;
                         CtrlALU = 3'd7;
                         CtrlRegDst = 3'd0;
@@ -642,7 +642,7 @@ always @(posedge clk) begin
                 CURRENT_STATE = CLOSE_WRITE;
 
                 CtrlMemtoReg = 4'd10;
-                CtrlRegDst = 3'd4;
+                CtrlRegDst = 3'd1;
             end
             
             MULT2: begin
@@ -712,14 +712,14 @@ always @(posedge clk) begin
 
                 RegWrite = 1;
                 CtrlMemtoReg = 4'd7;
-                CtrlRegDst = 3'd1;
+                CtrlRegDst = 3'd3;
             end
             
             JAL2: begin
                 CURRENT_STATE = JAL_END;
                 
                 CtrlMemtoReg = 4'd0;
-                CtrlRegDst = 3'd3;
+                CtrlRegDst = 3'd2;
                 RegWrite = 1;
             end
             
@@ -778,7 +778,7 @@ always @(posedge clk) begin
             BLM4: begin
                 CURRENT_STATE = BLM5;
                 
-                CtrlALUSrcA = 2'd2;
+                CtrlALUSrcA = 2'd1;
                 CtrlALUSrcB = 2'd0;
                 CtrlALU = 3'b111;
             end
@@ -798,7 +798,7 @@ always @(posedge clk) begin
                 end else begin
                     CURRENT_STATE = CLOSE_WRITE;
 
-                    CtrlRegDst = 3'd1; ///
+                    CtrlRegDst = 3'd3; ///
                     CtrlMemtoReg = 4'd0; ///
                     RegWrite = 1; ///
                 end

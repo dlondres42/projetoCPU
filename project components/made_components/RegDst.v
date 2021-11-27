@@ -9,9 +9,9 @@ module RegDst(
 always @(*) begin
     case(seletor)
         3'd0: data_out = RT;
-        3'd1: data_out = IMMEDIATE[15:11];
-        3'd2: data_out = 5'd29;
-        3'd3: data_out = 5'd31;
+        3'd1: data_out = 5'd29;
+        3'd2: data_out = 5'd31;
+        3'd3: data_out = IMMEDIATE[15:11];
         3'd4: data_out = RS;
     endcase
 end

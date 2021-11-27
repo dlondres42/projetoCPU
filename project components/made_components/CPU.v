@@ -293,8 +293,8 @@ module CPU(
     ALUSrcA M_ULAA_(
         CtrlALUSrcA,
         PC_out,
-        A_out,
         MDR_out,
+        A_out,
         ALUSrcA_out
     );
 
