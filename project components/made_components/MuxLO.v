@@ -1,15 +1,15 @@
 module MuxLO(
-    input wire seletor,
-    input wire [31:0] DivLO_out,
-    input wire [31:0] MultLO_out,
+    input wire selector,
+    input wire [31:0] MULT,
+    input wire [31:0] DIV,
     output reg [31:0] data_out
 );
 
 always @(*) begin
-    case(seletor)
-		1'b00: data_out = DivLO_out;
-		1'b01: data_out = MultLO_out;
+	case(selector)
+		1'd0: data_out = MULT;
+		1'd1: data_out = DIV;
 	endcase
 end
-	
+
 endmodule

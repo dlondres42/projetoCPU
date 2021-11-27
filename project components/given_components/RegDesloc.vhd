@@ -128,3 +128,4 @@ ARCHITECTURE behavioral_arch OF RegDesloc IS
 			Saida <= temp;	
 	end process;
 END behavioral_arch;
+

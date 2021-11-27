@@ -3,16 +3,26 @@ module CPU(
     input wire reset
 );
 
-///// ALU flags //////
+    // ALU flags
     wire Of;
     wire NG;
     wire Zero;
     wire ET;
     wire GT;
     wire LT;
-//////////////////////
+    
+    // DIV and MULT flags
+    wire MultStop;
+    wire DivStop;
+    wire DivZero;
 
-///// Write flags/////
+    // Instruction
+    wire [5:0] OPCODE;
+    wire [4:0] RS;
+    wire [4:0] RT;
+    wire [15:0] IMMEDIATE;
+
+    // WRITEs
     wire PCWrite;
     wire MemWrite;
     wire EPCWrite;
@@ -20,81 +30,62 @@ module CPU(
     wire RegWrite;
     wire ABWrite;
     wire ALUoutWrite;
-    wire HI_LO_WRITE;
+    wire HILOWrite;
     wire MDRWrite;
     assign MDRWrite = 1;
-//////////////////////
 
-///// Mult/Div flags ////
-    wire MultStop;
-    wire DivStop;
-    wire DivZero;
-/////////////////////////
-
-///// Controls ////////////
-    wire [1:0]CtrlALUSrcA;
-    wire [1:0]CtrlALUSrcB;
-    wire [2:0]CtrlRegDst;
-    wire [2:0]CtrlPCSource;
-    wire [3:0]CtrlMemtoReg;
-    wire [2:0]CtrlIord;
-    wire [2:0] CtrlALU;
-    wire [2:0] CtrlShift;
-    wire CtrlShiftSrcA;
-    wire CtrlShiftSrcB;
-    wire CtrlMult;
-    wire CtrlDiv;
-    wire CtrlHILO;
-    wire [1:0]CtrlSetSize;
-    wire [1:0]CtrlLoadSize;
-////////////////////////////
-
-///// IR entries ////////
-    wire [5:0] OPCODE;
-    wire [4:0] RS;
-    wire [4:0] RT;
-    wire [15:0] IMMEDIATE;
-/////////////////////////
-
-///// Out ////////////////////
+    // OUTs
+    wire [4:0]RegDst_out;
+    wire [31:0]MemtoReg_out;
+    wire [31:0]ALU_result;
     wire [31:0] PC_out;
-    wire [31:0] ALUSrcA_out;
-    wire [31:0] ALUSrcB_out;
-    wire [31:0] MDR_out;
-    wire [31:0] ALUout_out;
-    wire [31:0] ALU_result;
-    wire [31:0] EPC_out;
-    wire [31:0] PCSource_out;
-    wire [31:0] Iord_out;
-    wire [4:0] RegDst_out;
-    wire [31:0] MemtoReg_out;
     wire [31:0] Mem_out;
     wire [31:0] RB_to_A;
     wire [31:0] RB_to_B;
     wire [31:0] A_out;
     wire [31:0] B_out;
-    wire [31:0] SignXtend16to32_out;
-    wire [31:0] SignXtend1to32_out;
+    wire [31:0] Xtend16_to_32_out;
+    wire [31:0] Xtend1_to_32_out;
     wire [31:0] ShiftLeft2_out;
+    wire [31:0] ALUSrcA_out;
+    wire [31:0] ALUSrcB_out;
+    wire [31:0] ALUout_out;
+    wire [31:0] PCSource_out;
+    wire [31:0] EPC_out;
+    wire [31:0] CONCAT_out;
     wire [31:0] ShiftLeft16_out;
     wire [31:0] ShiftSrcA_out;
     wire [4:0] ShiftSrcB_out;
     wire [31:0] ShiftReg_out;
+    wire [31:0] MDR_out;
     wire [31:0] SetSize_out;
-    wire [31:0] Concatenate_out;
     wire [31:0] MDR_LS_out;
-/////////////////////////////////////////
+    wire [31:0] Iord_out;
+    wire [31:0] MULTHI_out;
+    wire [31:0] MULTLO_out;
+    wire [31:0] DIVHI_out;
+    wire [31:0] DIVLO_out;
+    wire [31:0] MHI_out;
+    wire [31:0] MLO_out;
+    wire [31:0] HI_out;
+    wire [31:0] LO_out;
 
-///// Mult/Div components ////
-    wire [31:0]MultHI_out;
-    wire [31:0]MultLO_out;
-    wire [31:0]DivHI_out;
-    wire [31:0]DivLO_out;
-    wire [31:0]MuxHI_out;
-    wire [31:0]MuxLO_out;
-    wire [31:0]HI_out;
-    wire [31:0]LO_out;
-//////////////////////////////
+    // Controls
+    wire CtrlMult;
+    wire CtrlDiv;
+    wire [1:0] CtrlSetSize;
+    wire [1:0] CtrlLoadSize;
+    wire [2:0] CtrlRegDst;
+    wire [3:0] CtrlMemtoReg;
+    wire [2:0] CtrlPCSource;
+    wire [1:0] CtrlALUSrcA;
+    wire [1:0] CtrlALUSrcB;
+    wire CtrlHILO;
+    wire CtrlShiftSrcA;
+    wire CtrlShiftSrcB;
+    wire [2:0] CtrlIord;
+    wire [2:0] CtrlALU;
+    wire [2:0] CtrlShift;
 
     Registrador PC_(
         clk,
@@ -104,11 +95,11 @@ module CPU(
         PC_out
     );
 
-    Iord MuxIord_(
+    Iord M_IORD_(
         CtrlIord,
         PC_out,
-        ALUout_out,
         ALU_result,
+        ALUout_out,
         Iord_out
     );
 
@@ -126,7 +117,7 @@ module CPU(
         MDRWrite,
         Mem_out,
         MDR_out
-    ); // feito
+    );
 
     SetSize SS_(
         CtrlSetSize,
@@ -139,7 +130,7 @@ module CPU(
         CtrlLoadSize,
         MDR_out,
         MDR_LS_out
-    ); // feito
+    );
 
     Instr_Reg IR_(
         clk,
@@ -150,9 +141,9 @@ module CPU(
         RS,
         RT,
         IMMEDIATE
-    ); // feito
+    );
 
-    RegDst MuxRegDst_(
+    RegDst M_REGDST_(
         CtrlRegDst,
         RT,
         IMMEDIATE,
@@ -167,8 +158,8 @@ module CPU(
         B_out,
         CtrlMult,
         MultStop,
-        MultHI_out,
-        MultLO_out
+        MULTHI_out,
+        MULTLO_out
     );
 
     DIV DIV_(
@@ -179,50 +170,50 @@ module CPU(
         CtrlDiv,
         DivStop,
         DivZero,
-        DivHI_out,
-        DivLO_out
+        DIVHI_out,
+        DIVLO_out
     );
 
-    MuxHI MuxHI_(
+    MuxHI M_HI_(
         CtrlHILO,
-        DivHI_out,
-        MultHI_out,
-        MuxHI_out
+        MULTHI_out,
+        DIVHI_out,
+        MHI_out
     );
 
-    MuxLO MuxLO_(
+    MuxLO M_LO_(
         CtrlHILO,
-        DivLO_out,
-        MultLO_out,
-        MuxLO_out
+        MULTLO_out,
+        DIVLO_out,
+        MLO_out
     );
 
     Registrador HI_(
         clk,
         reset,
-        HI_LO_WRITE,
-        MuxHI_out,
+        HILOWrite,
+        MHI_out,
         HI_out
     );
 
     Registrador LO_(
         clk,
         reset,
-        HI_LO_WRITE,
-        MuxLO_out,
+        HILOWrite,
+        MLO_out,
         LO_out
     );
-    
-    MemtoReg MuxMemtoReg_(
+
+    MemtoReg M_MEMTOREG_(
         CtrlMemtoReg,
         ALU_result,
         MDR_LS_out,
-        LO_out,
         HI_out,
-        ShiftReg_out,
-        SignXtend16to32_out,
+        LO_out,
+        Xtend1_to_32_out,
+        Xtend16_to_32_out,
         ShiftLeft16_out,
-        SignXtend1to32_out,
+        ShiftReg_out,
         A_out,
         B_out,
         MemtoReg_out
@@ -230,8 +221,8 @@ module CPU(
 
     ShiftSrcA M_SHIFTA_(
         CtrlShiftSrcA,
-        B_out,
         A_out,
+        B_out,
         ShiftSrcA_out
     );
 
@@ -246,8 +237,8 @@ module CPU(
         clk,
         reset,
         CtrlShift,
-        CtrlShiftSrcB,
-        CtrlShiftSrcA,
+        ShiftSrcB_out,
+        ShiftSrcA_out,
         ShiftReg_out
     );
 
@@ -279,61 +270,61 @@ module CPU(
         B_out
     );
 
-    SignXtend16to32 EXT16_32_(
+    Xtend16_to_32 XT16_32_(
         IMMEDIATE,
-        SignXtend16to32_out
+        Xtend16_to_32_out
+    );
+
+    Xtend1_to_32 XT1_32_(
+        LT,
+        Xtend1_to_32_out
     );
 
     ShiftLeft2 SLEFT_2_(
-        SignXtend16to32_out,
+        Xtend16_to_32_out,
         ShiftLeft2_out
     );
-    
-    SignXtend1to32 EXT1_32_(
-        LT,
-        SignXtend1to32_out
-    );
-    
+
     ShiftLeft16 SLEFT_16_(
         IMMEDIATE,
         ShiftLeft16_out
     );
-    
-    ALUSrcA MuxALUSrcA_(
+
+    ALUSrcA M_ULAA_(
         CtrlALUSrcA,
         PC_out,
-        MDR_out,
         A_out,
+        MDR_out,
         ALUSrcA_out
     );
 
-    ALUSrcB MuxALUSrcB_(
+    ALUSrcB M_ULAB_(
         CtrlALUSrcB,
         B_out,
-        SignXtend16to32_out,
+        Xtend16_to_32_out,
         ShiftLeft2_out,
         ALUSrcB_out
     );
     
-    Concatenate CONCAT_(
+    CONCATENATE CONCAT_(
         PC_out,
         RS,
         RT,
         IMMEDIATE,
-        Concatenate_out
+        CONCAT_out
     );
 
-    PCSource MuxPCSource_(
+    PCSource M_PCSOURCE_(
         CtrlPCSource,
         MDR_LS_out,
         ALU_result,
         ALUout_out, 
-        Concatenate_out,
+        CONCAT_out,
         EPC_out,
         PCSource_out
     );
 
-    ula32 ALU_(
+    ula32 ULA_(
         ALUSrcA_out,
         ALUSrcB_out,
         CtrlALU,
@@ -371,23 +362,16 @@ module CPU(
         ET,
         GT,
         LT,
-        MultStop,
-        DivStop,
-        DivZero,
-        OPCODE,
-        IMMEDIATE[5:0],
         MemWrite,
         PCWrite,
         IRWrite,
         RegWrite,
         ABWrite,
-        HI_LO_WRITE,
         ALUoutWrite,
         EPCWrite,
+        HILOWrite,
         CtrlALU,
         CtrlShift,
-        CtrlMult,
-        CtrlDiv,
         CtrlSetSize,
         CtrlLoadSize,
         CtrlRegDst,
@@ -398,7 +382,14 @@ module CPU(
         CtrlHILO,
         CtrlShiftSrcA,
         CtrlShiftSrcB,
-        CtrlIord
+        CtrlIord,
+        CtrlMult,
+        CtrlDiv,
+        MultStop,
+        DivStop,
+        DivZero,
+        OPCODE,
+        IMMEDIATE[5:0]
     );
 
 endmodule
