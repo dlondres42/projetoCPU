@@ -1,18 +1,4 @@
-C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Xtend16_to_32.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Xtend16_to_32.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Xtend16_to_32
-
-Top level modules:
-	Xtend16_to_32
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MemtoReg.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MemtoReg.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module MemtoReg
-
-Top level modules:
-	MemtoReg
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Memoria.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Memoria.vhd
+C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Memoria.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Memoria.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Compiling package ram_constants
@@ -31,13 +17,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	Control
 
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftLeft2.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftLeft2.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ShiftLeft2
-
-Top level modules:
-	ShiftLeft2
-
 } {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MuxHI.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MuxHI.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module MuxHI
@@ -45,41 +24,28 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	MuxHI
 
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Registrador.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Registrador.vhd
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftLeft2.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftLeft2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftLeft2
+
+Top level modules:
+	ShiftLeft2
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/LoadSize.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/LoadSize.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module LoadSize
+
+Top level modules:
+	LoadSize
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/ula32.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/ula32.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity Registrador
--- Compiling architecture behavioral_arch of Registrador
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/CONCATENATE.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/CONCATENATE.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module CONCATENATE
-
-Top level modules:
-	CONCATENATE
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Iord.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Iord.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Iord
-
-Top level modules:
-	Iord
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftSrcA.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftSrcA.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ShiftSrcA
-
-Top level modules:
-	ShiftSrcA
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/SetSize.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/SetSize.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module SetSize
-
-Top level modules:
-	SetSize
+-- Loading package NUMERIC_STD
+-- Compiling entity Ula32
+-- Compiling architecture behavioral of Ula32
 
 } {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/CPU.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/CPU.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -88,40 +54,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	CPU
 
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftLeft16.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftLeft16.v
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/SetSize.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/SetSize.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ShiftLeft16
+-- Compiling module SetSize
 
 Top level modules:
-	ShiftLeft16
+	SetSize
 
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftSrcB.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftSrcB.v
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CPU.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ShiftSrcB
+-- Compiling module CPU
 
 Top level modules:
-	ShiftSrcB
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/RegDst.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/RegDst.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module RegDst
-
-Top level modules:
-	RegDst
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MULT.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MULT.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module MULT
-
-Top level modules:
-	MULT
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Xtend1_to_32.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Xtend1_to_32.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Xtend1_to_32
-
-Top level modules:
-	Xtend1_to_32
+	CPU
 
 } {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Instr_Reg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Instr_Reg.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -138,42 +83,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	DIV
 
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/LoadSize.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/LoadSize.v
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/DIV.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/DIV.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module LoadSize
+-- Compiling module DIV
 
 Top level modules:
-	LoadSize
+	DIV
 
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ALUSrcA.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ALUSrcA.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ALUSrcA
-
-Top level modules:
-	ALUSrcA
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ALUSrcB.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ALUSrcB.v
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcB.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcB.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module ALUSrcB
 
 Top level modules:
 	ALUSrcB
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/PCSource.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/PCSource.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module PCSource
-
-Top level modules:
-	PCSource
-
-} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/ula32.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/ula32.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity Ula32
--- Compiling architecture behavioral of Ula32
 
 } {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MuxLO.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MuxLO.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -199,5 +121,285 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package NUMERIC_STD
 -- Compiling entity Banco_reg
 -- Compiling architecture behavioral_arch of Banco_reg
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Registrador.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/Registrador.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Registrador
+-- Compiling architecture behavioral_arch of Registrador
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Instr_Reg.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Instr_Reg.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Instr_Reg
+-- Compiling architecture behavioral_arch of Instr_Reg
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxHI.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxHI.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MuxHI
+
+Top level modules:
+	MuxHI
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/PCSource.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/PCSource.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module PCSource
+
+Top level modules:
+	PCSource
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Iord.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Iord.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Iord
+
+Top level modules:
+	Iord
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Banco_reg.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Banco_reg.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Banco_reg
+-- Compiling architecture behavioral_arch of Banco_reg
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/RegDesloc.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/RegDesloc.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity RegDesloc
+-- Compiling architecture behavioral_arch of RegDesloc
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ShiftSrcA.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ShiftSrcA.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftSrcA
+
+Top level modules:
+	ShiftSrcA
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/RegDst.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/RegDst.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module RegDst
+
+Top level modules:
+	RegDst
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MemtoReg.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MemtoReg
+
+Top level modules:
+	MemtoReg
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MULT.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MULT.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MULT
+
+Top level modules:
+	MULT
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/LoadSize.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/LoadSize.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module LoadSize
+
+Top level modules:
+	LoadSize
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ALUSrcA.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ALUSrcA.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ALUSrcA
+
+Top level modules:
+	ALUSrcA
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/ula32.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/given_components/ula32.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Ula32
+-- Compiling architecture behavioral of Ula32
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxLO.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MuxLO.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MuxLO
+
+Top level modules:
+	MuxLO
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Iord.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Iord.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Iord
+
+Top level modules:
+	Iord
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Xtend16_to_32.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Xtend16_to_32.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Xtend16_to_32
+
+Top level modules:
+	Xtend16_to_32
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Control.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Control.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Control
+
+Top level modules:
+	Control
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MULT.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/MULT.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MULT
+
+Top level modules:
+	MULT
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/CONCATENATE.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/CONCATENATE.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module CONCATENATE
+
+Top level modules:
+	CONCATENATE
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CONCATENATE.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/CONCATENATE.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module CONCATENATE
+
+Top level modules:
+	CONCATENATE
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/SetSize.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/SetSize.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module SetSize
+
+Top level modules:
+	SetSize
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftSrcA.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftSrcA.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftSrcA
+
+Top level modules:
+	ShiftSrcA
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ShiftSrcB.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ShiftSrcB.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftSrcB
+
+Top level modules:
+	ShiftSrcB
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Xtend1_to_32.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/Xtend1_to_32.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Xtend1_to_32
+
+Top level modules:
+	Xtend1_to_32
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ALUSrcB.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ALUSrcB.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ALUSrcB
+
+Top level modules:
+	ALUSrcB
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/PCSource.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/PCSource.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module PCSource
+
+Top level modules:
+	PCSource
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Registrador.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Registrador.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Registrador
+-- Compiling architecture behavioral_arch of Registrador
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MemtoReg.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/MemtoReg.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MemtoReg
+
+Top level modules:
+	MemtoReg
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Xtend16_to_32.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Xtend16_to_32.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Xtend16_to_32
+
+Top level modules:
+	Xtend16_to_32
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/RegDst.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/RegDst.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module RegDst
+
+Top level modules:
+	RegDst
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Xtend1_to_32.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/Xtend1_to_32.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Xtend1_to_32
+
+Top level modules:
+	Xtend1_to_32
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftLeft16.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftLeft16.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftLeft16
+
+Top level modules:
+	ShiftLeft16
+
+} {} {}} C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftSrcB.v {1 {vlog -work work -stats=none C:/Users/Yves/Desktop/projetoCPU/project_components/made_components/ShiftSrcB.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftSrcB
+
+Top level modules:
+	ShiftSrcB
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Memoria.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/given_components/Memoria.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling package ram_constants
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package LPM_COMPONENTS
+-- Loading package ram_constants
+-- Compiling entity Memoria
+-- Compiling architecture behavioral_arch of Memoria
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ShiftLeft16.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ShiftLeft16.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftLeft16
+
+Top level modules:
+	ShiftLeft16
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcA.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ALUSrcA.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ALUSrcA
+
+Top level modules:
+	ALUSrcA
+
+} {} {}} {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ShiftLeft2.v} {1 {vlog -work work -stats=none {C:/Users/Yves/Desktop/projetoCPU/project components/made_components/ShiftLeft2.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ShiftLeft2
+
+Top level modules:
+	ShiftLeft2
 
 } {} {}}
